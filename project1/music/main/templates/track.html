@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Треки{% endblock title %}
+{% block content %}
+ <table>
+        <thead>
+            <tr>
+                <th> Номер </th>
+                <th> Название </th>
+                <th> Длительность </th>
+                <th> Жанр </th>
+                <th> Редактировать </th>
+                <th> Удалить </th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for t in tracks %}
+                <tr>
+                    <td>{{t.id}}</td>
+                    <td>{{t.title}}</td>
+                    <td>{{t.duration}}</td>
+                    <td>
+                        {% for n in t.genres.all %}
+                            {{n.name_ru}},
+                        {% endfor %}
+                    </td>
+                    <td><a href="/edittrack/{{t.id}}">Редактировать </a></td>
+                    <td><a href="/deletetrack/{{t.id}}">Удалить </a></td>
+                    
+
+                </tr>
+         {% endfor %}
+        </tbody>
+    </table>
+    <a href="/addtrack">Добавить жанр</a>
+{% endblock content %}
+

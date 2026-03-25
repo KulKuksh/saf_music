@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подробная информация</title>
+    <link rel="stylesheet" href="{% static "styles.css" %}" />
+</head>
+<body>
+    <div id="wrapper">
+	<div id="header">
+		header
+	</div>
+	<div id="container">
+		<div id="sidebar">
+			sidebar
+            <h3>Породы</h3>
+            {% for p in por %}
+                <a href="breed/{{p.id}}">{{ p.title }}</a>
+            {% endfor %}
+
+		</div>
+		<div id="content">
+			<h1>Подробная информация</h1>
+            <h3>Кличка: {{dog.name}}</h3>
+			<h3>Порода: {{dog.breed}}</h3>
+			<h3>Возраст: {{dog.age}}</h3>
+			<h3>Вес: {{dog.weight}}</h3>
+
+            <img src="{% if dog.photo %} {{dog.photo.url}} {% endif %}" alt="">
+		</div>
+	</div>
+	<div id="footer">
+		footer
+	</div>
+</div>
+</body>
+</html>
