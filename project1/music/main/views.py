@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
-from .models import Genre, Track
-from .forms import GenreForm, TrackForm
+from .models import Genre, Track, Artist
+from .forms import GenreForm, TrackForm, ArtistForm
 
 # Create your views here.
 def index(request):
@@ -44,7 +44,7 @@ def add_genre(request):
 def track(request):
     tracks = Track.objects.all()
     
-    return render(request, "track.html", {'tracks': tracks})
+    return render(request, "track.html", {'track': track})
 
 def addtrack(request):
     if request.method == "POST":
@@ -75,4 +75,8 @@ def edittrack(request, id_track):
         trackform = TrackForm(instance=trac)
         return render(request, "edittrack.html", {'form': trackform})
     
+def artists(request):
+    a = Artist.objects.all()
+    return render(request, 'artists.html', {'artists': a})
+
     
