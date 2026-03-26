@@ -9,10 +9,19 @@ class Genre(models.Model):
     def __str__(self):
         return self.name_ru
 
+
+class Artist(models.Model):
+    name = models.CharField(max_length= 500, unique=True)
+    image = models.ImageField(upload_to='artists/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name()
+
+
 class Track(models.Model):
     title = models.CharField(max_length=500, unique=True)
     duration = models.IntegerField()
     genres = models.ManyToManyField(Genre)
+    artist = models.ForeignKey(Artist, on_delete=models.RESTRICT, null=True)
     def __str__(self):
         return self.title
-    
