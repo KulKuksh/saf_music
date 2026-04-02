@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}Породы{% endblock title %}
-{% block content %}
-    <ul>
-        {% for b in breeds %}
-            <li><a href="/editbreedform/{{b.id}}">{{b.title}}</a></li>
-            {% endfor %}
-    </ul>
-{% endblock content %}
